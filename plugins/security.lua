@@ -59,7 +59,7 @@ end
 --Begin pre_process function
 local function pre_process(msg)
 -- Begin 'RondoMsgChecks' text checks by @rondoozle and Edited by @janlou
--- Powered by @AdvanTeam & CopyRight all right reserved
+-- Powered by @Xt_robo & CopyRight all right reserved
 if is_chat_msg(msg) or is_super_group(msg) then
 	local data = load_data(_config.moderation.data)
 	local print_name = user_print_name(msg.from):gsub("‮", "") -- get rid of rtl in names

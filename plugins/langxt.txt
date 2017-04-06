@@ -1,43 +1,19 @@
---Start tools.lua by @Shahin_xtbot
---[[Plugins:
-savefile
-saveplug
-tosticker
-tophoto
-note
-onservice
-setteam
-setsudo (Default: local sudo_id = 186280031)
-addsudo
-clean deleted (Thanks to @Blackwolf_admin)
-filter
-hyper & bold & italic & code
-addplug
-delplug
-rmsg
-version
-setwlc
-setbye
-rate
-start
-]]
---Functions:
-----------------------------------------
+--Start tools.lua by @janlou --[[Plugins: savefile saveplug tosticker tophoto note onservice 
+setteam setsudo (Default: local sudo_id = 123456789) addsudo clean deleted (Thanks to 
+@Blackwolf_admin) filter hyper & bold & italic & code addplug delplug rmsg version setwlc 
+setbye rate start ]] --Functions: ----------------------------------------
 	local function lock_group_media(msg, data, target)
   if not is_momod(msg) then
     return
   end
   local group_media_lock = data[tostring(target)]['settings']['lock_media']
   if group_media_lock == 'yes' then
-    return 'قفل رسانه از قبل فعال  است .'
+    return 'قفل رسانه از قبل فعال است .'
   else
     data[tostring(target)]['settings']['lock_media'] = 'yes'
     save_data(_config.moderation.data, data)
     return 'قفل رسانه فعال شد .'
-  end
-end
-
-local function unlock_group_media(msg, data, target)
+  end end local function unlock_group_media(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -48,8 +24,7 @@ local function unlock_group_media(msg, data, target)
     data[tostring(target)]['settings']['lock_media'] = 'no'
     save_data(_config.moderation.data, data)
     return 'قفل رسانه فعال شد .'
-  end
-end
+  end end
     
 	local function lock_group_fwd(msg, data, target)
   if not is_momod(msg) then
@@ -64,10 +39,7 @@ end
     local hash = 'fwd:'..msg.to.id
     redis:set(hash, true)
     return 'قفل فروارد فعال شد .'
-  end
-end
-
-local function unlock_group_fwd(msg, data, target)
+  end end local function unlock_group_fwd(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -80,10 +52,7 @@ local function unlock_group_fwd(msg, data, target)
     local hash = 'fwd:'..msg.to.id
     redis:del(hash)
     return 'قفل فروارد غیرفعال شد .'
-  end
-end
-
-local function lock_group_reply(msg, data, target)
+  end end local function lock_group_reply(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -96,10 +65,7 @@ local function lock_group_reply(msg, data, target)
     local hash2 = 'reply:'..msg.to.id
     redis:set(hash2, true)
     return 'قفل ریپلی فعال شد .'
-  end
-end
-
-local function unlock_group_reply(msg, data, target)
+  end end local function unlock_group_reply(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -112,10 +78,7 @@ local function unlock_group_reply(msg, data, target)
     local hash2 = 'reply:'..msg.to.id
     redis:del(hash2)
     return 'قفل ریپلی غیرفعال شد .'
-  end
-end
-
-local function lock_group_share(msg, data, target)
+  end end local function lock_group_share(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -126,10 +89,7 @@ local function lock_group_share(msg, data, target)
     data[tostring(target)]['settings']['lock_share'] = 'yes'
     save_data(_config.moderation.data, data)
     return 'قفل ارسال مخاطب فعال شد .'
-  end
-end
-
-local function unlock_group_share(msg, data, target)
+  end end local function unlock_group_share(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -140,10 +100,7 @@ local function unlock_group_share(msg, data, target)
     data[tostring(target)]['settings']['lock_share'] = 'no'
     save_data(_config.moderation.data, data)
     return 'قفل ارسال مخاطب غیرفعال شد .'
-  end
-end
-
-local function lock_group_tag(msg, data, target)
+  end end local function lock_group_tag(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -154,10 +111,7 @@ local function lock_group_tag(msg, data, target)
     data[tostring(target)]['settings']['lock_tag'] = 'yes'
     save_data(_config.moderation.data, data)
     return 'قفل تگ فعال شد .'
-  end
-end
-
-local function unlock_group_tag(msg, data, target)
+  end end local function unlock_group_tag(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -168,10 +122,7 @@ local function unlock_group_tag(msg, data, target)
     data[tostring(target)]['settings']['lock_tag'] = 'no'
     save_data(_config.moderation.data, data)
     return 'قفل تگ غیرفعال شد .'
-  end
-end
-
-local function lock_group_bots(msg, data, target)
+  end end local function lock_group_bots(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -182,10 +133,7 @@ local function lock_group_bots(msg, data, target)
     data[tostring(target)]['settings']['lock_bots'] = 'yes'
     save_data(_config.moderation.data, data)
     return 'قفل ربات فعال شد .'
-  end
-end
-
-local function unlock_group_bots(msg, data, target)
+  end end local function unlock_group_bots(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -196,10 +144,7 @@ local function unlock_group_bots(msg, data, target)
     data[tostring(target)]['settings']['lock_bots'] = 'no'
     save_data(_config.moderation.data, data)
     return 'قفل ربات غیرفعال شد .'
-  end
-end
-
-local function lock_group_number(msg, data, target)
+  end end local function lock_group_number(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -210,10 +155,7 @@ local function lock_group_number(msg, data, target)
     data[tostring(target)]['settings']['lock_number'] = 'yes'
     save_data(_config.moderation.data, data)
     return 'قفل عدد فعال شد .'
-  end
-end
-
-local function unlock_group_number(msg, data, target)
+  end end local function unlock_group_number(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -224,10 +166,7 @@ local function unlock_group_number(msg, data, target)
     data[tostring(target)]['settings']['lock_number'] = 'no'
     save_data(_config.moderation.data, data)
     return 'قفل عدد غیرفعال شد .'
-  end
-end
-
-local function lock_group_poker(msg, data, target)
+  end end local function lock_group_poker(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -238,10 +177,7 @@ local function lock_group_poker(msg, data, target)
     data[tostring(target)]['settings']['lock_poker'] = 'yes'
     save_data(_config.moderation.data, data)
     return 'قفل پوکر فعال شد .'
-  end
-end
-
-local function unlock_group_poker(msg, data, target)
+  end end local function unlock_group_poker(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -252,9 +188,7 @@ local function unlock_group_poker(msg, data, target)
     data[tostring(target)]['settings']['lock_poker'] = 'no'
     save_data(_config.moderation.data, data)
     return 'قفل پوکر غیرفعال شد .'
-  end
-end
-
+  end end
 	local function lock_group_audio(msg, data, target)
 		local msg_type = 'Audio'
 		local chat_id = msg.to.id
@@ -271,10 +205,7 @@ end
     save_data(_config.moderation.data, data)
     return 'قفل صدا فعال شد .'
     end
-  end
-end
-
-local function unlock_group_audio(msg, data, target)
+  end end local function unlock_group_audio(msg, data, target)
 	local chat_id = msg.to.id
 	local msg_type = 'Audio'
   if not is_momod(msg) then
@@ -290,9 +221,7 @@ local function unlock_group_audio(msg, data, target)
     save_data(_config.moderation.data, data)
     return 'قفل صدا غیرفعال شد .'
     end
-  end
-end
-
+  end end
 	local function lock_group_photo(msg, data, target)
 		local msg_type = 'Photo'
 		local chat_id = msg.to.id
@@ -309,10 +238,7 @@ end
     save_data(_config.moderation.data, data)
     return 'قفل عکس فعال شد .'
     end
-  end
-end
-
-local function unlock_group_photo(msg, data, target)
+  end end local function unlock_group_photo(msg, data, target)
 	local chat_id = msg.to.id
 	local msg_type = 'Photo'
   if not is_momod(msg) then
@@ -328,9 +254,7 @@ local function unlock_group_photo(msg, data, target)
     save_data(_config.moderation.data, data)
     return 'قفل عکس غیرفعال شد .'
     end
-  end
-end
-
+  end end
 	local function lock_group_video(msg, data, target)
 		local msg_type = 'Video'
 		local chat_id = msg.to.id
@@ -347,10 +271,7 @@ end
     save_data(_config.moderation.data, data)
     return 'قفل فیلم فعال شد .'
     end
-  end
-end
-
-local function unlock_group_video(msg, data, target)
+  end end local function unlock_group_video(msg, data, target)
 	local chat_id = msg.to.id
 	local msg_type = 'Video'
   if not is_momod(msg) then
@@ -366,9 +287,7 @@ local function unlock_group_video(msg, data, target)
     save_data(_config.moderation.data, data)
     return 'قفل فیلم غیرفعال شد .'
     end
-  end
-end
-
+  end end
 	local function lock_group_documents(msg, data, target)
 		local msg_type = 'Documents'
 		local chat_id = msg.to.id
@@ -385,10 +304,7 @@ end
     save_data(_config.moderation.data, data)
     return 'قفل فایل فعال شد .'
     end
-  end
-end
-
-local function unlock_group_documents(msg, data, target)
+  end end local function unlock_group_documents(msg, data, target)
 	local chat_id = msg.to.id
 	local msg_type = 'Documents'
   if not is_momod(msg) then
@@ -404,9 +320,7 @@ local function unlock_group_documents(msg, data, target)
     save_data(_config.moderation.data, data)
     return 'قفل فایل غیرفعال شد .'
     end
-  end
-end
-
+  end end
 	local function lock_group_text(msg, data, target)
 		local msg_type = 'Text'
 		local chat_id = msg.to.id
@@ -423,10 +337,7 @@ end
     save_data(_config.moderation.data, data)
     return 'قفل متن فعال شد .'
     end
-  end
-end
-
-local function unlock_group_text(msg, data, target)
+  end end local function unlock_group_text(msg, data, target)
 	local chat_id = msg.to.id
 	local msg_type = 'Text'
   if not is_momod(msg) then
@@ -442,9 +353,7 @@ local function unlock_group_text(msg, data, target)
     save_data(_config.moderation.data, data)
     return 'قفل متن غیرفعال شد .'
     end
-  end
-end
-
+  end end
 	local function lock_group_all(msg, data, target)
 		local msg_type = 'All'
 		local chat_id = msg.to.id
@@ -461,10 +370,7 @@ end
     save_data(_config.moderation.data, data)
     return 'قفل همه فعال شد .'
     end
-  end
-end
-
-local function unlock_group_all(msg, data, target)
+  end end local function unlock_group_all(msg, data, target)
 	local chat_id = msg.to.id
 	local msg_type = 'All'
   if not is_momod(msg) then
@@ -480,9 +386,7 @@ local function unlock_group_all(msg, data, target)
     save_data(_config.moderation.data, data)
     return 'قفل همه غیرفعال شد .'
     end
-  end
-end
-
+  end end
 	local function lock_group_gifs(msg, data, target)
 		local msg_type = 'Gifs'
 		local chat_id = msg.to.id
@@ -499,10 +403,7 @@ end
     save_data(_config.moderation.data, data)
     return 'قفل گیف فعال شد .'
     end
-  end
-end
-
-local function unlock_group_gifs(msg, data, target)
+  end end local function unlock_group_gifs(msg, data, target)
 	local chat_id = msg.to.id
 	local msg_type = 'Gifs'
   if not is_momod(msg) then
@@ -518,10 +419,7 @@ local function unlock_group_gifs(msg, data, target)
     save_data(_config.moderation.data, data)
     return 'قفل گیف غیرفعال شد .'
     end
-  end
-end
-
-local function lock_group_inline(msg, data, target)
+  end end local function lock_group_inline(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -532,10 +430,7 @@ local function lock_group_inline(msg, data, target)
     data[tostring(target)]['settings']['lock_inline'] = 'yes'
     save_data(_config.moderation.data, data)
     return 'قفل اینلاین فعال شد .'
-  end
-end
-
-local function unlock_group_inline(msg, data, target)
+  end end local function unlock_group_inline(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -546,10 +441,7 @@ local function unlock_group_inline(msg, data, target)
     data[tostring(target)]['settings']['lock_inline'] = 'no'
     save_data(_config.moderation.data, data)
     return 'قفل اینلاین غیرفعال شد .'
-  end
-end
-
-local function lock_group_cmd(msg, data, target)
+  end end local function lock_group_cmd(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -560,10 +452,7 @@ local function lock_group_cmd(msg, data, target)
     data[tostring(target)]['settings']['lock_cmd'] = 'yes'
     save_data(_config.moderation.data, data)
     return 'قفل دستورات فعال شد .'
-  end
-end
-
-local function unlock_group_cmd(msg, data, target)
+  end end local function unlock_group_cmd(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -574,18 +463,9 @@ local function unlock_group_cmd(msg, data, target)
     data[tostring(target)]['settings']['lock_cmd'] = 'no'
     save_data(_config.moderation.data, data)
     return 'قفل دستورات غیرفعال شد .'
-  end
-end
-----------------------------------------
-local function get_variables_hash(msg)
-
-    return 'chat:'..msg.to.id..':badword'
-
-end 
-
-local function list_variablesbad(msg)
+  end end ---------------------------------------- local function get_variables_hash(msg)
+    return 'chat:'..msg.to.id..':badword' end local function list_variablesbad(msg)
   local hash = get_variables_hash(msg)
-
   if hash then
     local names = redis:hkeys(hash)
     local text = 'List of words :\n\n'
@@ -594,11 +474,8 @@ local function list_variablesbad(msg)
     end
     return text
 	else
-	return 
-  end
-end
-
-local function list_variables2(msg, value)
+	return
+  end end local function list_variables2(msg, value)
   local hash = get_variables_hash(msg)
   
   if hash then
@@ -610,16 +487,10 @@ local function list_variables2(msg, value)
 	delete_msg(msg.id,ok_cb,false)
 	else
 	kick_user(msg.from.id, msg.to.id)
-
-	end
-return 
-end
+	end return end
       --text = text..names[i]..'\n'
     end
-  end
-end
-
-local function tophoto(msg, success, result, extra)
+  end end local function tophoto(msg, success, result, extra)
   local receiver = get_receiver(msg)
   if success then
     local file = 'data/tmp/image.jpg'
@@ -631,10 +502,7 @@ local function tophoto(msg, success, result, extra)
   else
     print('Error downloading: '..msg.id)
     send_large_msg(receiver, 'Failed, please try again!', ok_cb, false)
-  end
-end
-
-local function tosticker(msg, success, result)
+  end end local function tosticker(msg, success, result)
   local receiver = get_receiver(msg)
   if success then
     local file = 'data/tmp/sticker.webp'
@@ -646,10 +514,7 @@ local function tosticker(msg, success, result)
   else
     print('Error downloading: '..msg.id)
     send_large_msg(receiver, 'Failed, please try again!', ok_cb, false)
-  end
-end
-
-local function savefile(extra, success, result)
+  end end local function savefile(extra, success, result)
   local msg = extra.msg
   local name = extra.name
   local adress = extra.adress
@@ -662,32 +527,18 @@ local function savefile(extra, success, result)
   else
     print('Error downloading: '..msg.id)
     send_large_msg(receiver, 'Failed, please try again!', ok_cb, false)
-  end
-end
-
-local function reload_plugins( )
+  end end local function reload_plugins( )
   plugins = {}
-  load_plugins()
-end
-
-local function plugin_enabled( name )
+  load_plugins() end local function plugin_enabled( name )
   for k,v in pairs(_config.enabled_plugins) do
     if name == v then
       return k
     end
   end
-  return false
-end
-
-local function enable_plugin( plugin_name )
-if plugin_enabled(plugin_name) then
-  reload_plugins( )
-else table.insert(_config.enabled_plugins, plugin_name)
-    save_config()
-end
-end
-
-local function saveplug(extra, success, result)
+  return false end local function enable_plugin( plugin_name ) if plugin_enabled(plugin_name) 
+then
+  reload_plugins( ) else table.insert(_config.enabled_plugins, plugin_name)
+    save_config() end end local function saveplug(extra, success, result)
   local msg = extra.msg
   local name = extra.name
   local receiver = get_receiver(msg)
@@ -702,45 +553,25 @@ local function saveplug(extra, success, result)
   else
     print('Error downloading: '..msg.id)
     send_large_msg(receiver, 'Failed, please try again!', ok_cb, false)
-  end
-end
-
-local function callback(extra, success, result)
+  end end local function callback(extra, success, result)
     vardump(success)
-    cardump(result)
-end
-
-local function check_member_super_deleted(cb_extra, success, result)
+    cardump(result) end local function check_member_super_deleted(cb_extra, success, result) 
 local receiver = cb_extra.receiver
  local msg = cb_extra.msg
-  local deleted = 0 
-if success == 0 then
-send_large_msg(receiver, "First set me as admin!") 
-end
-for k,v in pairs(result) do
-  if not v.first_name and not v.last_name then
-deleted = deleted + 1
+  local deleted = 0 if success == 0 then send_large_msg(receiver, "First set me as admin!") 
+end for k,v in pairs(result) do
+  if not v.first_name and not v.last_name then deleted = deleted + 1
  kick_user(v.peer_id,msg.to.id)
  end
  end
- send_large_msg(receiver, deleted.." Deleted account removed from group!") 
- end 
-
-local function addword(msg, name)
+ send_large_msg(receiver, deleted.." Deleted account removed from group!")
+ end local function addword(msg, name)
     local hash = 'chat:'..msg.to.id..':badword'
     redis:hset(hash, name, 'newword')
-    return "New word has been added to list \n>"..name
-end
-
-local function get_variables_hash(msg)
-
-    return 'chat:'..msg.to.id..':badword'
-
-end 
-
-local function list_variablesbad(msg)
+    return "New word has been added to list \n>"..name end local function 
+get_variables_hash(msg)
+    return 'chat:'..msg.to.id..':badword' end local function list_variablesbad(msg)
   local hash = get_variables_hash(msg)
-
   if hash then
     local names = redis:hkeys(hash)
     local text = 'List of words :\n\n'
@@ -749,18 +580,12 @@ local function list_variablesbad(msg)
     end
     return text
 	else
-	return 
-  end
-end
-
-function clear_commandbad(msg, var_name)
-  --Save on redis  
+	return
+  end end function clear_commandbad(msg, var_name)
+  --Save on redis
   local hash = get_variables_hash(msg)
   redis:del(hash, var_name)
-  return 'Cleaned!'
-end
-
-local function get_valuebad(msg, var_name)
+  return 'Cleaned!' end local function get_valuebad(msg, var_name)
   local hash = get_variables_hash(msg)
   if hash then
     local value = redis:hget(hash, var_name)
@@ -769,16 +594,11 @@ local function get_valuebad(msg, var_name)
     else
       return value
     end
-  end
-end
-function clear_commandsbad(msg, cmd_name)
-  --Save on redis  
+  end end function clear_commandsbad(msg, cmd_name)
+  --Save on redis
   local hash = get_variables_hash(msg)
   redis:hdel(hash, cmd_name)
-  return ''..cmd_name..'  cleaned!'
-end
-
-local function history(extra, suc, result)
+  return ''..cmd_name..'  cleaned!' end local function history(extra, suc, result)
   for i=1, #result do
     delete_msg(result[i].id, ok_cb, false)
   end
@@ -786,11 +606,7 @@ local function history(extra, suc, result)
     send_msg(extra.chatid, '"'..#result..'" message has been removed!', ok_cb, false)
   else
     send_msg(extra.chatid, 'Removing has been finished.', ok_cb, false)
-  end
-end
-
---Functions.
-function run(msg, matches, callback, extra)
+  end end --Functions. function run(msg, matches, callback, extra)
   one = io.open("./system/team", "r")
   two = io.open("./system/channel", "r")
   local team = one:read("*all")
@@ -838,26 +654,20 @@ function run(msg, matches, callback, extra)
 	   --Start:
 	    if msg.text:match("/[Ss][Tt][Aa][Rr][Tt]") then
 		    if msg.to.type == "user" then
-			    return "Hello dear ["..msg.from.print_name.."], welcome to "..msg.to.print_name.."\nThanks for /start me :)\n"
+			    return "Hello dear ["..msg.from.print_name.."], welcome to 
+"..msg.to.print_name.."\nThanks for /start me :)\n"
 	        end
         end
 	   --Start.
 	   --ADV(Dont change!):
-	    if msg.text:match("^[!/#][Xx][Tt][Bb][Oo][Tt]$") then
-    	    about_text = [[*IN THE NAME OF ALLAH*
-This is an original bot and based on (AdvanSource).
-Copyright all right reserved and you must respect all laws.
-
-Source: https://github.com/janlou/xt_robo
-Channel: @xt_robo
-Messenger: @sergatxt_bot
-Creator: @shahin_xtbot
-Site: http://StoreVps.net
-Version: [4.1]
-]]
+	    if msg.text:match("^[!/#][Aa][Dd][Vv][Aa][Nn]$") then
+    	    about_text = [[*IN THE NAME OF ALLAH* This is an original bot and based on 
+(AdvanSource). Copyright all right reserved and you must respect all laws. Source: 
+https://github.com/janlou/AdvanSource Channel: @AdvanTeam Messenger: @Advanbot Creator: 
+@janlou Site: http://StoreVps.net Version: [4.1] ]]
     	    return about_text
         end
-	     --ADV 
+	     --ADV
          --tosticker && tophoto:
          if msg.media then
       	if msg.media.type == 'document' and redis:get("sticker:photo") then
@@ -876,7 +686,8 @@ Version: [4.1]
 			   if not is_owner(msg) and not is_sudo(msg) then
 				   redis:setex("wait:"..msg.from.id, 30, true)
 				   redis:set("sticker:photo", "waiting")
-    	     return 'Please send your sticker now\n\nPowered by '..team..'\nJoin us : '..channel
+    	     return 'Please send your sticker now\n\nPowered by '..team..'\nJoin us : 
+'..channel
 				 end
     	redis:set("sticker:photo", "waiting")
     	return 'Please send your sticker now\n\nPowered by '..team..'\nJoin us : '..channel
@@ -904,7 +715,7 @@ Version: [4.1]
 	    end
 	   --Version.
 	   --please put your id here:
-    local sudo_id = 186280031
+    local sudo_id = 123456789
        --Please put your id here.
 	   --Setsudo:
 	if matches[1]:lower() == "setsudo" then
@@ -929,12 +740,13 @@ Version: [4.1]
 		end
 	end
 	   --Addsudo.
-	   --Clean deleted  & filterlist:
-    if matches[1]:lower() == 'clean' then 
+	   --Clean deleted & filterlist:
+    if matches[1]:lower() == 'clean' then
 		    if matches[2] == "deleted" then
 		      if is_owner(msg) then
-                receiver = get_receiver(msg) 
-                channel_get_users(receiver, check_member_super_deleted,{receiver = receiver, msg = msg})
+                receiver = get_receiver(msg)
+                channel_get_users(receiver, check_member_super_deleted,{receiver = receiver, 
+msg = msg})
 		      else
 			      return "Just for owner or sudo!"
           end
@@ -978,9 +790,10 @@ Version: [4.1]
 	   --Addplug.
 	   --Delplug:
 	        if matches[1] == "delplug" and is_sudo(msg) then
-                reply_msg(msg['id'], "پلاگین ["..matches[2].."] با موفقیت حذف شد", ok_cb, false)
+                reply_msg(msg['id'], "پلاگین ["..matches[2].."] با موفقیت حذف شد", ok_cb, 
+false)
                 return io.popen("cd plugins && rm "..matches[2]..".lua")
-            end 
+            end
 	   --Delplug.
        --Note:
    if matches[1] == "note" and matches[2] then
@@ -994,7 +807,8 @@ Version: [4.1]
   file:write(text)
   file:flush()
   file:close()
-  return "You can use it:\n!mynote\n\nYour note has been changed to:\n"..text.."\n\n"..team..'\n<a href="'..channel..'">Join us</a>'
+  return "You can use it:\n!mynote\n\nYour note has been changed 
+to:\n"..text.."\n\n"..team..'\n<a href="'..channel..'">Join us</a>'
  end
  
    if matches[1] == "mynote" then
@@ -1025,7 +839,8 @@ Version: [4.1]
                 if tonumber(matches[2]) > 10000 or tonumber(matches[2]) < 1 then
                     return "More than 1 and less than 10,000"
                 end
-                get_history(msg.to.peer_id, matches[2] + 1 , history , {chatid = msg.to.peer_id, con = matches[2]})
+                get_history(msg.to.peer_id, matches[2] + 1 , history , {chatid = 
+msg.to.peer_id, con = matches[2]})
             else
                 return "Only for supergroup!"
             end
@@ -1035,11 +850,12 @@ Version: [4.1]
 	   --Rmsg.
        --onservice:
     if matches[1] == 'leave' and is_admin1(msg) then
-       bot_id = our_id 
+       bot_id = our_id
        receiver = get_receiver(msg)
        chat_del_user("chat#id"..msg.to.id, 'user#id'..bot_id, ok_cb, false)
 	   leave_channel(receiver, ok_cb, false)
-    elseif msg.service and msg.action.type == "chat_add_user" and msg.action.user.id == tonumber(bot_id) and not is_admin1(msg) then
+    elseif msg.service and msg.action.type == "chat_add_user" and msg.action.user.id == 
+tonumber(bot_id) and not is_admin1(msg) then
        send_large_msg(receiver, 'This is not one of my groups.', ok_cb, false)
        chat_del_user(receiver, 'user#id'..bot_id, ok_cb, false)
 	   leave_channel(receiver, ok_cb, false)
@@ -1061,131 +877,132 @@ Version: [4.1]
        end
        --Setteam.
 	   --Filter:
-	    if msg.text:match("^(.+)$") and not is_momod(msg) and not is_whitelisted(msg.from.id) then
+	    if msg.text:match("^(.+)$") and not is_momod(msg) and not 
+is_whitelisted(msg.from.id) then
             name = user_print_name(msg.from)
             return list_variables2(msg, msg.text)
         end
 	   --Filter.
 	    --Lock or Unlock settings:
-	    if matches[1] == 'قفل' then
+	    if matches[1] == 'lock' then
 		    if is_momod(msg) then
-	        if is_super_group(msg) then
+			if is_super_group(msg) then
 			local target = msg.to.id
 			local data = load_data(_config.moderation.data)
-			if matches[2] == 'مدیا' then
+			if matches[2] == 'media' then
 				return lock_group_media(msg, data, target)
 			end
-			if matches[2] == 'فوروارد' then
+			if matches[2] == 'fwd' then
 				return lock_group_fwd(msg, data, target)
 			end
-			if matches[2] == 'ریپلای' then
+			if matches[2] == 'reply' then
 				return lock_group_reply(msg, data, target)
 			end
-			if matches[2] == 'شیر' then
+			if matches[2] == 'share' then
 				return lock_group_share(msg, data, target)
 			end
-			if matches[2] == 'تگ' then
+			if matches[2] == 'tag' then
 				return lock_group_tag(msg, data, target)
 			end
-			if matches[2] == 'ربات ها' then
+			if matches[2] == 'bots' then
 				return lock_group_bots(msg, data, target)
 			end
-			if matches[2] == 'عدد' then
+			if matches[2] == 'number' then
 				return lock_group_number(msg, data, target)
 			end
-			if matches[2] == 'پوکر' then
+			if matches[2] == 'poker' then
 				return lock_group_poker(msg, data, target)
 			end
-			if matches[2] == 'صدا' then
+			if matches[2] == 'audio' then
 				return lock_group_audio(msg, data, target)
 			end
-			if matches[2] == 'عکس' then
+			if matches[2] == 'photo' then
 				return lock_group_photo(msg, data, target)
 			end
-			if matches[2] == 'فیلم' then
+			if matches[2] == 'video' then
 				return lock_group_video(msg, data, target)
 			end
-			if matches[2] == 'فایل' then
+			if matches[2] == 'documents' then
 				return lock_group_documents(msg, data, target)
 			end
-			if matches[2] == 'متن' then
+			if matches[2] == 'text' then
 				return lock_group_text(msg, data, target)
 			end
-			if matches[2] == 'همه' then
+			if matches[2] == 'all' then
 				return lock_group_all(msg, data, target)
 			end
-			if matches[2] == 'گیف' then
+			if matches[2] == 'gifs' then
 				return lock_group_gifs(msg, data, target)
 			end
-			if matches[2] == 'اینلاین' then
+			if matches[2] == 'inline' then
 				return lock_group_inline(msg, data, target)
 			end
-			if matches[2] == 'دستورات' then
+			if matches[2] == 'cmd' then
 				return lock_group_cmd(msg, data, target)
 			end
 			end
 			end
         end
 		
-		if matches[1] == 'بازکردن' then
+		if matches[1] == 'unlock' then
 		    if is_momod(msg) then
-	        if is_super_group(msg) then
+			if is_super_group(msg) then
 			local target = msg.to.id
 			local data = load_data(_config.moderation.data)
-			if matches[2] == 'مدیا' then
+			if matches[2] == 'media' then
 				return unlock_group_media(msg, data, target)
 			end
-			if matches[2] == 'فوروارد' then
+			if matches[2] == 'fwd' then
 				return unlock_group_fwd(msg, data, target)
 			end
-			if matches[2] == 'ریپلای' then
+			if matches[2] == 'reply' then
 				return unlock_group_reply(msg, data, target)
 			end
-			if matches[2] == 'شیر' then
+			if matches[2] == 'share' then
 				return unlock_group_share(msg, data, target)
 			end
-			if matches[2] == 'تگ' then
+			if matches[2] == 'tag' then
 				return unlock_group_tag(msg, data, target)
 			end
-			if matches[2] == 'ربات ها' then
+			if matches[2] == 'bots' then
 				return unlock_group_bots(msg, data, target)
 			end
-			if matches[2] == 'عدد' then
+			if matches[2] == 'number' then
 				return unlock_group_number(msg, data, target)
 			end
-			if matches[2] == 'پوکر' then
+			if matches[2] == 'poker' then
 				return unlock_group_poker(msg, data, target)
 			end
-			if matches[2] == 'صدا' then
+			if matches[2] == 'audio' then
 				return unlock_group_audio(msg, data, target)
 			end
-			if matches[2] == 'عکس' then
+			if matches[2] == 'photo' then
 				return unlock_group_photo(msg, data, target)
 			end
-			if matches[2] == 'فیلم' then
+			if matches[2] == 'video' then
 				return unlock_group_video(msg, data, target)
 			end
-			if matches[2] == 'فایل' then
+			if matches[2] == 'documents' then
 				return unlock_group_documents(msg, data, target)
 			end
-			if matches[2] == 'متن' then
+			if matches[2] == 'text' then
 				return unlock_group_text(msg, data, target)
 			end
-			if matches[2] == 'همه' then
+			if matches[2] == 'all' then
 				return unlock_group_all(msg, data, target)
 			end
-			if matches[2] == 'گیف' then
+			if matches[2] == 'gifs' then
 				return unlock_group_gifs(msg, data, target)
 			end
-			if matches[2] == 'اینلاین' then
+			if matches[2] == 'inline' then
 				return unlock_group_inline(msg, data, target)
 			end
-			if matches[2] == 'دستورات' then
+			if matches[2] == 'cmd' then
 				return unlock_group_cmd(msg, data, target)
 			end
-            end
-            end
-	end
+			end
+			end
+         end
 	--Lock or Unlock settings.
 	   --Setbye:
 	    if matches[1] == "setbye" and matches[2] then
@@ -1196,7 +1013,8 @@ Version: [4.1]
 		    redis:set("bye:"..msg.to.id, text)
             return "متن خروج کاربر تغییر کرد به:\n"..text
         end
-		if matches[1] == "chat_del_user" or matches[1] == "channel_kick" or matches[1] == "kick_user" then
+		if matches[1] == "chat_del_user" or matches[1] == "channel_kick" or matches[1] 
+== "kick_user" then
 		    send = redis:get("bye:"..msg.to.id)
 			if send then
                 return send
@@ -1228,11 +1046,12 @@ Version: [4.1]
 		if matches[1] == 'delwlc' then
 		    if not is_owner(msg) then
 			    return "فقط مخصوص مدیر گروه"
-			end	
+			end
 			redis:del('wlc:'..msg.to.id)
             return 'متن خوش آمد گویی با موفقیت حذف شد'
 		end
-		if matches[1] == 'chat_add_user' or matches[1] == 'chat_add_user_link' or matches[1] == 'channel_invite' then
+		if matches[1] == 'chat_add_user' or matches[1] == 'chat_add_user_link' or 
+matches[1] == 'channel_invite' then
 		    send = redis:get("wlc:"..msg.to.id)
 			if send then
                 return send
@@ -1240,13 +1059,10 @@ Version: [4.1]
                 return
             end
 	    end
-	   --Setwlc.
-end
-
-return {
+	   --Setwlc. end return {
   advan = {
-   "Created by: @Shahin_xtbot",
-   "Powered by: @Xt_robo",
+   "Created by: @janlou",
+   "Powered by: @AdvanTeam",
    "CopyRight all right reserved",
   },
   patterns = {
@@ -1278,9 +1094,9 @@ return {
  "^[!/#]([Ss]etbye) (.*)$",
  "^[!/#]([Dd]elbye)$",
  "^[!/#][Rr][Aa][Tt][Ee]$",
- "^[!/#][Xx][Tt][Bb][Oo][Tt]$",
- "^(قفل) (.*)$",
- "^(بازکردن) (.*)$",
+ "^[!/#][Aa][Dd][Vv][Aa][Nn]$",
+ "^[!/#](lock) (.*)$",
+ "^[!/#](unlock) (.*)$",
  "/[Ss][Tt][Aa][Rr][Tt]",
  "^!!tgservice (chat_del_user)$",
  "^!!tgservice (channel_kick)$",
